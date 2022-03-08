@@ -1,0 +1,17 @@
+.errorContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    padding: 1rem;
+
+    .errorTitle {
+        font-size: 288px;
+        margin: 0;
+    }
+
+    .errorLink {
+        color: initial;
+    }
+
+}

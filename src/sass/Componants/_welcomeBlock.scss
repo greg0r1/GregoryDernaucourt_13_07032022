@@ -1,0 +1,16 @@
+.welcomeBlock {
+
+    margin: 0 0 50px 0;
+
+    @include mobile-only {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: auto;
+    }
+
+    h1 span {
+        color: red;
+    }
+
+}

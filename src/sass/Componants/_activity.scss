@@ -1,0 +1,28 @@
+.activity {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: flex-end;
+    aspect-ratio: 16/9;
+    background: #FBFBFB;
+    border-radius: 5px;
+    overflow: hidden;
+    padding: 10px 0;
+
+    @include tablet-only {
+        height: 250px;
+    }
+
+    @include desktop-only {
+        height: 300px;
+    }
+
+    & svg {
+        overflow: visible;
+    }
+
+    &>div {
+        display: flex;
+        align-items: flex-end;
+    }
+}
