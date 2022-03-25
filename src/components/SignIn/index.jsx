@@ -3,7 +3,7 @@ function SignIn({
   setPasswd,
   submit,
   setSubmit,
-  setCookie,
+  setLocalStorageChecked,
   identification,
 }) {
   const handleSubmit = (e) => {
@@ -33,7 +33,7 @@ function SignIn({
             Password
             <input
               type="password"
-              minLength={2}
+              minLength={11}
               required={true}
               id="password"
               onChange={(e) => setPasswd(e.target.value)}
@@ -43,13 +43,13 @@ function SignIn({
         <div className="input-remember">
           <label>
             <input
-              onChange={(e) => setCookie(e.target.checked)}
+              onChange={(e) => setLocalStorageChecked(e.target.checked)}
               type="checkbox"
               id="remember-me"
             />
             Remember me
           </label>
-          {!identification && submit ? (
+          {/* {!identification ? (
             <span
               style={{
                 color: 'red',
@@ -61,7 +61,7 @@ function SignIn({
             </span>
           ) : (
             ''
-          )}
+          )} */}
         </div>
         <button type="submit" className="sign-in-button">
           Sign In

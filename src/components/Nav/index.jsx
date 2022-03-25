@@ -3,10 +3,11 @@ import argentBankLogo from '../../assets/images/argentBankLogo.png'
 import signoutIcon from '../../assets/images/signout.svg'
 import signinIcon from '../../assets/images/signin.svg'
 import personCircle from '../../assets/images/person-circle.svg'
-import { useSelector } from 'react-redux'
+import { useSelector, useStore } from 'react-redux'
 import { selectToken, selectProfile } from '../../utils/selectors'
 import { useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
+
 /**
  * It renders a nav bar with a logo, a sign in/out button, and a profile button.
  * @returns A nav bar with a logo, a sign in/out button, and a profile button.
@@ -16,6 +17,8 @@ function Nav() {
   const profile = useSelector(selectProfile) || null
   const firstNameUser = profile.data?.body.firstName
   const tokenState = useSelector(selectToken)
+  const dispatch = useDispatch()
+  const store = useStore()
 
   useEffect(() => {
     const tokenData = tokenState.data
@@ -23,8 +26,7 @@ function Nav() {
       ? setIsLogged(true)
       : setIsLogged(false)
     return
-  }, [tokenState, isLogged])
-  const dispatch = useDispatch()
+  }, [tokenState, isLogged, store])
 
   return (
     <nav className="main-nav">

@@ -51,7 +51,7 @@ export async function fetchOrUpdatetoken(store, emailUser, passwdUser) {
         // si la requête fonctionne, on envoie les données à redux avec l'action resolved
         store.dispatch(tokenResolved(data))
     } catch (error) {
-        // en cas d'erreur on infirme le store avec l'action rejected
+        // en cas d'erreur on informe le store avec l'action rejected
         store.dispatch(tokenRejected(error))
     }
 }

@@ -8,15 +8,20 @@ import { useNavigate } from 'react-router-dom'
 
 function Login() {
   const store = useStore()
-  const [email, setEmail] = useState('')
-  const [passwd, setPasswd] = useState('')
+  const [email, setEmail] = useState(
+    localStorage.getItem('ArgentBank_email') || ''
+  )
+  const [passwd, setPasswd] = useState(
+    localStorage.getItem('ArgentBank_password') || ''
+  )
   const [submit, setSubmit] = useState(false)
   const [identification, setIdentification] = useState()
+  const [localStorageChecked, setLocalStorageChecked] = useState()
   const token = useSelector(selectToken)
   const navigate = useNavigate()
 
   useEffect(() => {
-    submit && fetchOrUpdatetoken(store, email, passwd)
+    if (submit) fetchOrUpdatetoken(store, email, passwd)
     if (token.data?.status === 400) {
       setIdentification(false)
       setSubmit(false)
@@ -25,9 +30,22 @@ function Login() {
       setSubmit(true)
       setIdentification(true)
     }
+    if (localStorageChecked && submit) {
+      localStorage.setItem('ArgentBank_email', email)
+      localStorage.setItem('ArgentBank_password', passwd)
+    }
     if (submit && identification) navigate('/profile')
     return
-  }, [token, store, email, passwd, submit, identification, navigate])
+  }, [
+    token,
+    store,
+    email,
+    passwd,
+    submit,
+    identification,
+    navigate,
+    localStorageChecked,
+  ])
 
   if (token.status === 'rejected') {
     return (
@@ -53,7 +71,7 @@ function Login() {
         setPasswd={setPasswd}
         submit={submit}
         setSubmit={setSubmit}
-        // setCookie={setCookie}
+        setLocalStorageChecked={setLocalStorageChecked}
         identification={identification}
       />
     </main>
