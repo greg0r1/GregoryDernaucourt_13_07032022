@@ -200,7 +200,7 @@ paths:
           description: Update user profile attributes
           required: true
           schema:
-            $ref: '#/definitions/additionalInformation'
+            $ref: '#/definitions/AdditionalInformation'
       produces:
         - application/json
       responses:
@@ -296,11 +296,11 @@ definitions:
         type: number
       balance:
         type: number
-      additionalInformation:
-        $ref: '#/definitions/additionalInformation'
+      AdditionalInformation:
+        $ref: '#/definitions/AdditionalInformation'
       id:
         type: integer
-  additionalInformation:
+  AdditionalInformation:
     type: object
     properties:
       transactionType:
