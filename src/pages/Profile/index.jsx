@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { fetchProfilePost, fetchProfilePut } from '../../features/profile'
+import { fetchProfilePost, fetchProfilePut } from '../../features/userProfile'
 import { useSelector, useStore } from 'react-redux'
 import { selectToken } from '../../utils/selectors'
 import WelcomeUser from '../../components/WelcomeUser'

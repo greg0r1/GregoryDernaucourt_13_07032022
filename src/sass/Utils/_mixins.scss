@@ -5,3 +5,13 @@
         @content;
     }
 }
+
+@mixin button {
+    margin: 10px;
+    border-color: #00bc77;
+    background-color: #00bc77;
+    color: #fff;
+    font-weight: bold;
+    padding: 10px 30px;
+
+}

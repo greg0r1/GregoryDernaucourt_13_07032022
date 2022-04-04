@@ -1,6 +1,6 @@
 export default class ApiCallsService {
 
-    static async getToken(emailUser, passwdUser) {
+    static async loginUser(emailUser, passwdUser) {
         const response = await fetch('http://localhost:3001/api/v1/user/login', {
             method: 'POST',
             headers: new Headers({

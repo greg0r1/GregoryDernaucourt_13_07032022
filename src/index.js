@@ -5,7 +5,7 @@ import { Provider } from 'react-redux'
 import './sass/main.scss'
 import Home from './pages/Home'
 import Login from './pages/Login'
-import Transactions from './pages/Transactions'
+import TransactionsList from './pages/Transactions'
 import Profile from './pages/Profile'
 import Nav from './components/Nav'
 import Footer from './components/Footer'
@@ -20,7 +20,7 @@ ReactDOM.render(
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/transactions" element={<Transactions />} />
+          <Route path="/transactions" element={<TransactionsList />} />
         </Routes>
         <Footer />
       </BrowserRouter>

@@ -5,6 +5,7 @@
     background-color: #FFF;
     padding: 1.5rem;
     margin: auto;
+    border: solid 1px #000;
 
     .transaction_arrow {
 
@@ -36,6 +37,11 @@
             width: 100%;
             display: flex;
             justify-content: space-between;
+
+            input[type="text"] {
+                padding: 10px;
+                margin: 5px;
+            }
         }
 
         ul {
@@ -48,12 +54,17 @@
             li {
                 align-self: flex-start;
                 padding: 10px 0;
+                align-items: center;
 
                 &:last-child {
                     padding-bottom: 0;
                 }
             }
         }
+    }
+
+    button {
+        @include button
     }
 
     span img {

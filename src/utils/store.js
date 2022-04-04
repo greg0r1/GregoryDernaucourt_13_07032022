@@ -1,6 +1,6 @@
 import { combineReducers, createStore } from 'redux'
-import tokenReducer from '../features/token'
-import profileReducer from '../features/profile'
+import tokenReducer from '../features/loginUser'
+import profileReducer from '../features/userProfile'
 
 
 // on utilise combineReducer pour faire

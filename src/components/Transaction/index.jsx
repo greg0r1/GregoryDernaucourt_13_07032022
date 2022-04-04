@@ -2,48 +2,88 @@ import { useState } from 'react'
 import arrowIcon from '../../assets/images/arrow.svg'
 import pencilFillIcon from '../../assets/images/pencil-fill.svg'
 
-function Transaction() {
-  const [display, setDisplay] = useState(false)
+function Transaction({
+  date,
+  description,
+  amount,
+  balance,
+  transactionType,
+  category,
+  note,
+}) {
+  const [displayDetails, setDisplayDetails] = useState(false)
+  const [isEditingCategory, setEdtitingCategory] = useState(false)
+  const [isEditingNote, setEditingNote] = useState(false)
 
   return (
-    <div className="transaction">
+    <div
+      className="transaction"
+      onClick={
+        displayDetails === true
+          ? () => setDisplayDetails(() => false)
+          : () => setDisplayDetails(() => true)
+      }
+    >
       <div className="transaction_arrow">
         <img
-          className={display ? 'arrow down' : 'arrow up'}
+          className={displayDetails ? 'arrow down' : 'arrow up'}
           src={arrowIcon}
           alt=""
-          onClick={
-            display === true
-              ? () => setDisplay(() => false)
-              : () => setDisplay(() => true)
-          }
         />
       </div>
       <div className="transaction_content">
         <div className="resume">
-          <span>June 20th, 2020</span>
-          <span>Golden Sun Bakery</span>
-          <span>$5.00</span>
-          <span>$2082.00</span>
+          <span>{date}</span>
+          <span>{description}</span>
+          <span>{amount}</span>
+          <span>{balance}</span>
         </div>
-        {display && (
+        {displayDetails && (
           <div className="details">
             <ul>
               <li>
                 <span>Transaction Type: </span>
-                <span>Electronic</span>
+                <span>{transactionType}</span>
               </li>
               <li>
                 <span>Category: </span>
-                <span>Food </span>
+                {!isEditingCategory ? (
+                  <span>{category} </span>
+                ) : (
+                  <input type="text" placeholder={category}></input>
+                )}
                 <span>
-                  <img src={pencilFillIcon} alt="" />
+                  {!isEditingCategory ? (
+                    <img
+                      src={pencilFillIcon}
+                      alt=""
+                      onClick={() => setEdtitingCategory(true)}
+                    />
+                  ) : (
+                    <button
+                      type="submit"
+                      onClick={() => setEdtitingCategory(false)}
+                    >
+                      Submit
+                    </button>
+                  )}
                 </span>
               </li>
               <li>
                 <span>Note: </span>
+                {!isEditingNote ? <span>{note}</span> : <textarea></textarea>}
                 <span>
-                  <img src={pencilFillIcon} alt="" />
+                  {!isEditingNote ? (
+                    <img
+                      src={pencilFillIcon}
+                      alt=""
+                      onClick={() => setEditingNote(true)}
+                    />
+                  ) : (
+                    <button type="submit" onClick={() => setEditingNote(false)}>
+                      Submit
+                    </button>
+                  )}
                 </span>
               </li>
             </ul>

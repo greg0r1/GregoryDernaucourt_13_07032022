@@ -1,7 +1,8 @@
 import produce from 'immer'
-import { selectProfile } from '../utils/selectors'
+import { selectToken } from '../utils/selectors'
+import ApiCallsService from '../utils/ApiCallsService'
 
-// Le state initial de la feature profile
+// Le state initial de la feature token
 const initialState = {
     // le statut permet de suivre l'état de la requête
     status: 'void',
@@ -11,22 +12,22 @@ const initialState = {
     error: null,
 }
 // Les noms des actions
-const FETCHING = 'profile/fetching'
-const RESOLVED = 'profile/resolved'
-const REJECTED = 'profile/rejected'
-const LOGOUT = 'profile/logout'
+const FETCHING = 'token/fetching'
+const RESOLVED = 'token/resolved'
+const REJECTED = 'token/rejected'
+const LOGOUT = 'token/logout'
 // la requête est en cours
-const profileFetching = () => ({ type: FETCHING })
+const tokenFetching = () => ({ type: FETCHING })
 // la requête a fonctionné
-const profileResolved = (data) => ({ type: RESOLVED, payload: data })
+const tokenResolved = (data) => ({ type: RESOLVED, payload: data })
 // la requête a échoué
-const profileRejected = (error) => ({ type: REJECTED, payload: error })
+const tokenRejected = (error) => ({ type: REJECTED, payload: error })
 
 // cette fonction est une action asynchrone
 // elle attend le store redux en paramètre
-export async function fetchProfilePost(store, token) {
+export async function fetchOrUpdatetoken(store, emailUser, passwdUser) {
     // on peut lire le state actuel avec store.getState()
-    const status = selectProfile(store.getState()).status
+    const status = selectToken(store.getState()).status
     // si la requête est déjà en cours
     if (status === 'pending' || status === 'updating') {
         // on stop la fonction pour éviter de récupérer plusieurs fois la même donnée
@@ -34,61 +35,30 @@ export async function fetchProfilePost(store, token) {
     }
     // On peut modifier le state en envoyant des actions avec store.dispatch()
     // ici on indique que la requête est en cours
-    store.dispatch(profileFetching())
+    store.dispatch(tokenFetching())
     try {
         // on utilise fetch pour faire la requête
-        const response = await fetch('http://localhost:3001/api/v1/user/profile', {
-            method: 'POST',
-            headers: new Headers({
-                'Content-Type': 'application/json',
-                Authorization: 'Bearer ' + token
-            })
-        })
-        const data = await response.json()
+        // const response = await fetch('http://localhost:3001/api/v1/user/login', {
+        //     method: 'POST',
+        //     headers: new Headers({
+        //         'Content-Type': 'application/json',
+        //     }),
+        //     body: JSON.stringify({
+        //         email: emailUser,
+        //         password: passwdUser,
+        //     }),
+        // })
+        // const data = await response.json()
+        const data = await ApiCallsService.loginUser(emailUser, passwdUser)
         // si la requête fonctionne, on envoie les données à redux avec l'action resolved
-        store.dispatch(profileResolved(data))
+        store.dispatch(tokenResolved(data))
     } catch (error) {
-        // en cas d'erreur on infirme le store avec l'action rejected
-        store.dispatch(profileRejected(error))
+        // en cas d'erreur on informe le store avec l'action rejected
+        store.dispatch(tokenRejected(error))
     }
 }
 
-export async function fetchProfilePut(store, token, firstName, lastName) {
-    // on peut lire le state actuel avec store.getState()
-    const status = selectProfile(store.getState()).status
-    // si la requête est déjà en cours
-    if (status === 'pending' || status === 'updating') {
-        // on stop la fonction pour éviter de récupérer plusieurs fois la même donnée
-        return
-    }
-    // On peut modifier le state en envoyant des actions avec store.dispatch()
-    // ici on indique que la requête est en cours
-    store.dispatch(profileFetching())
-    try {
-        // on utilise fetch pour faire la requête
-        const response = await fetch('http://localhost:3001/api/v1/user/profile', {
-            method: 'PUT',
-            headers: new Headers({
-                'Content-Type': 'application/json',
-                Authorization: 'Bearer ' + token
-            }),
-            body: JSON.stringify({
-                "firstName": firstName,
-                "lastName": lastName
-            }),
-
-        })
-        const data = await response.json()
-        // si la requête fonctionne, on envoie les données à redux avec l'action resolved
-        store.dispatch(profileResolved(data))
-    } catch (error) {
-        // en cas d'erreur on infirme le store avec l'action rejected
-        store.dispatch(profileRejected(error))
-    }
-}
-
-export default function profileReducer(/* Initializing the state with the initial state and the action. */
-    state = initialState, action) {
+export default function tokenReducer(state = initialState, action) {
     // on utilise immer pour changer le state
     return produce(state, (draft) => {
         // on fait un switch sur le type de l'action
@@ -134,8 +104,8 @@ export default function profileReducer(/* Initializing the state with the initia
                 // si la requête est en cours
                 if (draft.status === 'pending' || draft.status === 'updating') {
                     // on passe en rejected, on sauvegarde l'erreur et on supprime les données
-                    draft.status = 'rejected'
                     draft.error = action.payload
+                    draft.status = 'rejected'
                     draft.data = null
                     return
                 }

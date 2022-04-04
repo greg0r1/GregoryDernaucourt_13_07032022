@@ -1,14 +1,21 @@
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
-function Account({ activeLink }) {
+/**
+ *
+ * @param {Object} props
+ * @param {Object} props.activeLink
+ * @returns {React.ReactElement}
+ */
+function Account({ activeLink, title, amount, balanceType }) {
   const activeLinkButton = activeLink
 
   return (
     <section className="account">
       <div className="account-content-wrapper">
-        <h3 className="account-title">Argent Bank Checking (x8349)</h3>
-        <p className="account-amount">$2,082.79</p>
-        <p className="account-amount-description">Available Balance</p>
+        <h3 className="account-title">{title}</h3>
+        <p className="account-amount">{amount}</p>
+        <p className="account-amount-description">{balanceType}</p>
       </div>
       {activeLinkButton && (
         <div className="account-content-wrapper cta">
@@ -22,3 +29,11 @@ function Account({ activeLink }) {
 }
 
 export default Account
+
+Account.propType = {
+  activeLink: PropTypes.bool,
+}
+
+Account.defaultProps = {
+  activeLink: false,
+}

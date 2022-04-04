@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { fetchOrUpdatetoken } from '../../features/token'
+import { fetchOrUpdatetoken } from '../../features/loginUser'
 import { useSelector, useStore } from 'react-redux'
 import { selectToken } from '../../utils/selectors'
 import SignIn from '../../components/SignIn'
