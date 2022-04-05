@@ -3,9 +3,8 @@ import argentBankLogo from '../../assets/images/argentBankLogo.png'
 import signoutIcon from '../../assets/images/signout.svg'
 import signinIcon from '../../assets/images/signin.svg'
 import personCircle from '../../assets/images/person-circle.svg'
-import { useSelector, useStore } from 'react-redux'
 import { selectToken, selectProfile } from '../../utils/selectors'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 
 /**
@@ -18,7 +17,6 @@ function Nav() {
   const firstNameUser = profile.data?.body.firstName
   const tokenState = useSelector(selectToken)
   const dispatch = useDispatch()
-  const store = useStore()
 
   useEffect(() => {
     const tokenData = tokenState.data
@@ -26,7 +24,7 @@ function Nav() {
       ? setIsLogged(true)
       : setIsLogged(false)
     return
-  }, [tokenState, isLogged, store])
+  }, [tokenState, isLogged])
 
   return (
     <nav className="main-nav">

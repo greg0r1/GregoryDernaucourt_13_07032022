@@ -1,29 +1,20 @@
-import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 /**
  *
  * @param {Object} props
- * @param {Object} props.activeLink
  * @returns {React.ReactElement}
  */
-function Account({ activeLink, title, amount, balanceType }) {
-  const activeLinkButton = activeLink
-
+function Account(props) {
   return (
     <section className="account">
       <div className="account-content-wrapper">
-        <h3 className="account-title">{title}</h3>
-        <p className="account-amount">{amount}</p>
-        <p className="account-amount-description">{balanceType}</p>
+        <h3 className="account-title">{props.title}</h3>
+        <p className="account-amount">{props.amount}</p>
+        <p className="account-amount-description">{props.balanceType}</p>
       </div>
-      {activeLinkButton && (
-        <div className="account-content-wrapper cta">
-          <Link to={'/transactions'}>
-            <button className="transaction-button">View transactions</button>
-          </Link>
-        </div>
-      )}
+      {props.children}
+      {/* Children: Insert a button to link to transaction */}
     </section>
   )
 }

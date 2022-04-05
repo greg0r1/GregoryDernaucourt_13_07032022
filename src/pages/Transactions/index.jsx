@@ -2,18 +2,26 @@ import Account from '../../components/Account'
 import Transaction from '../../components/Transaction'
 import { transactions } from '../../mocksData'
 import { selectToken } from '../../utils/selectors'
-import { useSelector } from 'react-redux'
+import { useSelector, useStore } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 function TransactionsList() {
   const items = transactions
   const token = useSelector(selectToken)
+  const store = useStore()
+  const stateTitle = store.getState().account.data.title
+  const stateAmount = store.getState().account.data.amount
+  const stateBalanceType = store.getState().account.data.balanceType
 
   return (
     <main className="transactions main bg-dark">
       {token.status === 'resolved' ? (
         <>
-          <Account activeLink={false} />
+          <Account
+            title={stateTitle}
+            amount={stateAmount}
+            balanceType={stateBalanceType}
+          ></Account>{' '}
           <section className="transactionsList">
             {items.map((item) => (
               <Transaction

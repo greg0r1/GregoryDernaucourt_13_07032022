@@ -37,18 +37,6 @@ export async function fetchOrUpdatetoken(store, emailUser, passwdUser) {
     // ici on indique que la requête est en cours
     store.dispatch(tokenFetching())
     try {
-        // on utilise fetch pour faire la requête
-        // const response = await fetch('http://localhost:3001/api/v1/user/login', {
-        //     method: 'POST',
-        //     headers: new Headers({
-        //         'Content-Type': 'application/json',
-        //     }),
-        //     body: JSON.stringify({
-        //         email: emailUser,
-        //         password: passwdUser,
-        //     }),
-        // })
-        // const data = await response.json()
         const data = await ApiCallsService.loginUser(emailUser, passwdUser)
         // si la requête fonctionne, on envoie les données à redux avec l'action resolved
         store.dispatch(tokenResolved(data))

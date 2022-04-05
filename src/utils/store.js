@@ -1,6 +1,7 @@
 import { combineReducers, createStore } from 'redux'
 import tokenReducer from '../features/loginUser'
 import profileReducer from '../features/userProfile'
+import accountReducer from '../features/account'
 
 
 // on utilise combineReducer pour faire
@@ -8,6 +9,7 @@ import profileReducer from '../features/userProfile'
 const reducer = combineReducers({
     token: tokenReducer,
     profile: profileReducer,
+    account: accountReducer
 })
 
 // Pour connecter les Redux Devtools on utilise

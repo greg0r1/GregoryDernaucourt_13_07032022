@@ -16,15 +16,15 @@ function Transaction({
   const [isEditingNote, setEditingNote] = useState(false)
 
   return (
-    <div
-      className="transaction"
-      onClick={
-        displayDetails === true
-          ? () => setDisplayDetails(() => false)
-          : () => setDisplayDetails(() => true)
-      }
-    >
-      <div className="transaction_arrow">
+    <div className="transaction">
+      <div
+        className="transaction_arrow"
+        onClick={
+          displayDetails === true
+            ? () => setDisplayDetails(() => false)
+            : () => setDisplayDetails(() => true)
+        }
+      >
         <img
           className={displayDetails ? 'arrow down' : 'arrow up'}
           src={arrowIcon}
