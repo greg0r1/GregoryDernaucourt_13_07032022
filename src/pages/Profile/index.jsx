@@ -1,3 +1,5 @@
+//@ts-check
+
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { fetchProfilePost, fetchProfilePut } from '../../features/userProfile'
@@ -8,6 +10,10 @@ import Accounts from '../../components/Accounts'
 import Spinner from '../../components/Spinner'
 import { selectProfile } from '../../utils/selectors'
 
+/**
+ * It render a page with user's infos and user's accounts
+ * @returns {React.ReactElement}
+ */
 function Profile() {
   const store = useStore()
   const token = useSelector(selectToken)

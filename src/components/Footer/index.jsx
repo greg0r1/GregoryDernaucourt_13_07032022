@@ -1,3 +1,9 @@
+//@ts-check
+
+/**
+ * It render a footer component
+ * @returns {React.ReactElement}
+ */
 function Footer() {
   return (
     <footer className="footer">

@@ -1,6 +1,22 @@
+//@ts-check
+
 import { useState } from 'react'
 import arrowIcon from '../../assets/images/arrow.svg'
 import pencilFillIcon from '../../assets/images/pencil-fill.svg'
+import PropTypes from 'prop-types'
+
+/**
+ * It render a transaction row
+ * @param {Object} props
+ * @param {String} props.date
+ * @param {String} props.description
+ * @param {String} props.amount
+ * @param {String} props.balance
+ * @param {String} props.transactionType
+ * @param {String} props.category
+ * @param {String} props.note
+ * @returns {React.ReactElement}
+ */
 
 function Transaction({
   date,
@@ -95,3 +111,23 @@ function Transaction({
 }
 
 export default Transaction
+
+Transaction.propType = {
+  date: PropTypes.string,
+  description: PropTypes.string,
+  amount: PropTypes.string,
+  balance: PropTypes.string,
+  transactionType: PropTypes.string,
+  category: PropTypes.string,
+  note: PropTypes.string,
+}
+
+Transaction.defaultProps = {
+  date: 'date',
+  description: 'description',
+  amount: 'amount',
+  balance: 'balance',
+  transactionType: 'transactionType',
+  category: 'category',
+  note: 'note',
+}

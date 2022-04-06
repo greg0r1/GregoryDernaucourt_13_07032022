@@ -1,7 +1,9 @@
+//@ts-check
+
 import PropTypes from 'prop-types'
 
 /**
- *
+ * It render a block with essential infos
  * @param {Object} props
  * @returns {React.ReactElement}
  */
@@ -14,7 +16,7 @@ function Account(props) {
         <p className="account-amount-description">{props.balanceType}</p>
       </div>
       {props.children}
-      {/* Children: Insert a button to link to transaction */}
+      {/* Children: Insert a button to link to transactions list */}
     </section>
   )
 }

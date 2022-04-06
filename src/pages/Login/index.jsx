@@ -1,3 +1,5 @@
+//@ts-check
+
 import { useEffect, useState } from 'react'
 import { fetchOrUpdatetoken } from '../../features/loginUser'
 import { useSelector, useStore } from 'react-redux'
@@ -6,6 +8,10 @@ import SignIn from '../../components/SignIn'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 
+/**
+ *
+ * @returns {React.ReactElement}
+ */
 function Login() {
   const store = useStore()
   const [email, setEmail] = useState(
@@ -15,8 +21,8 @@ function Login() {
     localStorage.getItem('ArgentBank_password') || ''
   )
   const [submit, setSubmit] = useState(false)
-  const [identification, setIdentification] = useState()
-  const [localStorageChecked, setLocalStorageChecked] = useState()
+  const [identification, setIdentification] = useState(Boolean)
+  const [localStorageChecked, setLocalStorageChecked] = useState(Boolean)
   const token = useSelector(selectToken)
   const navigate = useNavigate()
 
@@ -69,10 +75,8 @@ function Login() {
       <SignIn
         setEmail={setEmail}
         setPasswd={setPasswd}
-        submit={submit}
         setSubmit={setSubmit}
         setLocalStorageChecked={setLocalStorageChecked}
-        identification={identification}
       />
     </main>
   )

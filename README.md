@@ -12,7 +12,7 @@ To start this project, first you need to install all the dependencies.
 To do this, run the command `npm install` (with no args, in package dir)  
 This command installs any packages that it depends on.
 
-Then run the command `npm start` for on-the-fly modules compilation by Webpack, and open the browser view window on the local port.
+Then run the command `npm run start` for on-the-fly modules compilation by Webpack, and open the browser view window on the local port.
 
 To create a production build, use `npm run build`.
 

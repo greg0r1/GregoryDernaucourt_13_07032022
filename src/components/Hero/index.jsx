@@ -1,3 +1,9 @@
+//@ts-check
+
+/**
+ * It render a homepage element
+ * @returns {React.ReactElement}
+ */
 function Hero() {
   return (
     <div className="hero">

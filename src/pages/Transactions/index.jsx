@@ -5,6 +5,10 @@ import { selectToken } from '../../utils/selectors'
 import { useSelector, useStore } from 'react-redux'
 import { Link } from 'react-router-dom'
 
+/**
+ * It render a page with infos of account selected and transactions of account
+ * @returns {React.ReactElement}
+ */
 function TransactionsList() {
   const items = transactions
   const token = useSelector(selectToken)

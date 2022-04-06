@@ -7,9 +7,11 @@ import { selectToken, selectProfile } from '../../utils/selectors'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 
+//@ts-check
+
 /**
  * It renders a nav bar with a logo, a sign in/out button, and a profile button.
- * @returns A nav bar with a logo, a sign in/out button, and a profile button.
+ * @returns {React.ReactElement}
  */
 function Nav() {
   const [isLogged, setIsLogged] = useState(false)

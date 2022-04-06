@@ -1,7 +1,13 @@
+//@ts-check
+
 import iconChat from '../../assets/images/icon-chat.png'
 import iconMoney from '../../assets/images/icon-money.png'
 import iconSecurity from '../../assets/images/icon-security.png'
 
+/**
+ * It render a homepage element
+ * @returns {React.ReactElement}
+ */
 function Features() {
   return (
     <section className="features">

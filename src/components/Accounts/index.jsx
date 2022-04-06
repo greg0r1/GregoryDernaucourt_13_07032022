@@ -1,16 +1,22 @@
+//@ts-check
+
 import { accounts } from '../../mocksData'
 import Account from '../Account'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
 /**
- * List of user's accounts
+ * It render a List of user's accounts
  * @returns {React.ReactElement}
  */
 function Accounts() {
   const items = accounts
   const dispatch = useDispatch()
 
+  /**
+   * Set a state to get these infos later into another component Account after click
+   * @param {Object} item
+   */
   function handleClick(item) {
     dispatch({
       type: 'SET_ACCOUNT',

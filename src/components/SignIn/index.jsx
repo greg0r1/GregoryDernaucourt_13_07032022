@@ -1,11 +1,17 @@
-function SignIn({
-  setEmail,
-  setPasswd,
-  submit,
-  setSubmit,
-  setLocalStorageChecked,
-  identification,
-}) {
+//@ts-check
+
+import PropTypes from 'prop-types'
+
+/**
+ * It render a Sign In form
+ * @param {Object} props
+ * @param {Function} props.setEmail
+ * @param {Function} props.setPasswd
+ * @param {Function} props.setSubmit
+ * @param {Function} props.setLocalStorageChecked
+ * @returns {React.ReactElement}
+ */
+function SignIn({ setEmail, setPasswd, setSubmit, setLocalStorageChecked }) {
   const handleSubmit = (e) => {
     e.preventDefault()
     setSubmit(true)
@@ -49,19 +55,6 @@ function SignIn({
             />
             Remember me
           </label>
-          {/* {!identification ? (
-            <span
-              style={{
-                color: 'red',
-                display: 'flex',
-                justifyContent: 'center',
-              }}
-            >
-              identification error
-            </span>
-          ) : (
-            ''
-          )} */}
         </div>
         <button type="submit" className="sign-in-button">
           Sign In
@@ -72,3 +65,10 @@ function SignIn({
 }
 
 export default SignIn
+
+SignIn.propType = {
+  setEmail: PropTypes.func,
+  setPasswd: PropTypes.func,
+  setSubmit: PropTypes.func,
+  setLocalStorageChecked: PropTypes.func,
+}

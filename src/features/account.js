@@ -1,3 +1,5 @@
+// Un state est initialiser lors du clique sur l'un des comptes, pour récupérer ces informations
+// lors de l'affichage des transactions du compte qui a été cliqué.
 const initialState = {
     data: {}
 }
