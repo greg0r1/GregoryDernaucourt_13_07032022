@@ -9,6 +9,7 @@ import TransactionsList from './pages/Transactions'
 import Profile from './pages/Profile'
 import Nav from './components/Nav'
 import Footer from './components/Footer'
+import Error from './components/Error'
 import store from './utils/store'
 
 ReactDOM.render(
@@ -21,6 +22,7 @@ ReactDOM.render(
           <Route path="/login" element={<Login />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/transactions" element={<TransactionsList />} />
+          <Route path="/404" element={<Error />} />
         </Routes>
         <Footer />
       </BrowserRouter>

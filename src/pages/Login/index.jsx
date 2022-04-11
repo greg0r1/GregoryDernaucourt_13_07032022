@@ -41,6 +41,7 @@ function Login() {
       localStorage.setItem('ArgentBank_password', passwd)
     }
     if (submit && identification) navigate('/profile')
+    if (token.status === 'rejected') navigate('/404')
     return
   }, [
     token,
@@ -68,18 +69,18 @@ function Login() {
         <Link to={'/'}>Page d'accueil</Link>
       </div>
     )
+  } else {
+    return (
+      <main className="main bg-dark">
+        <SignIn
+          setEmail={setEmail}
+          setPasswd={setPasswd}
+          setSubmit={setSubmit}
+          setLocalStorageChecked={setLocalStorageChecked}
+        />
+      </main>
+    )
   }
-
-  return (
-    <main className="main bg-dark">
-      <SignIn
-        setEmail={setEmail}
-        setPasswd={setPasswd}
-        setSubmit={setSubmit}
-        setLocalStorageChecked={setLocalStorageChecked}
-      />
-    </main>
-  )
 }
 
 export default Login

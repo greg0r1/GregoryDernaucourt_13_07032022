@@ -13,8 +13,8 @@ import PropTypes from 'prop-types'
  */
 function SignIn({ setEmail, setPasswd, setSubmit, setLocalStorageChecked }) {
   const handleSubmit = (e) => {
-    e.preventDefault()
     setSubmit(true)
+    e.preventDefault()
   }
 
   return (
