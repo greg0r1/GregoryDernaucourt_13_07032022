@@ -303,8 +303,6 @@ definitions:
   AdditionalInformation:
     type: object
     properties:
-      transactionType:
-        type: string
       category:
         type: string
       notes:
